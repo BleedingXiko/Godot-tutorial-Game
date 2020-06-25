@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/RunSound.wav-459ff13e0eba88c73cc79d142ff3334f.sample"
+
+[deps]
+
+source_file="res://Audio/Sounds/RunSound.wav"
+dest_files=[ "res://.import/RunSound.wav-459ff13e0eba88c73cc79d142ff3334f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Graphics/Environment/Tilesets/CityTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Graphics/Backgrounds/NeonCityscape/BackgroundSky1.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Backgrounds/NeonCityscape/BackgroundNearBuildings.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Collectibles/LevelGoal.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Characters/GodotSpritesheet.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/LevelCore.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Character/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/CamRig.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.54849, 9.6725 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("GoalSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.03, 0.03 ), Vector2( 0.001, 0.03 ), Vector2( 0.03, 0.03 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GoalSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.003, 0 ), Vector2( 0.003, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.733333 ), Color( 1, 1, 1, 0.733333 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "collected"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("GoalSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.003, 0 ), Vector2( 0.00292969, -24.2651 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GoalSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.705882 ), Color( 1, 1, 1, 0.705882 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.03, 0.03 ), Vector2( 0.03, 0.03 ) ]
+}
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="CamRig" parent="." instance=ExtResource( 8 )]
+
+[node name="DecorBack" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="DecorFront" type="TileMap" parent="."]
+z_index = 10
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="BackgroundLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+motion_offset = Vector2( 0, -100 )
+motion_mirroring = Vector2( 430, 0 )
+
+[node name="BackgroundSky1" type="Sprite" parent="Background/ParallaxBackground/BackgroundLayer"]
+position = Vector2( 0, -126.798 )
+scale = Vector2( 3.417, 2.109 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="NearBuildings" type="Sprite" parent="Background/ParallaxBackground"]
+modulate = Color( 1, 1, 1, 0.803922 )
+position = Vector2( 678.57, 216.222 )
+scale = Vector2( 1.5, 1.5 )
+z_index = -11
+texture = ExtResource( 3 )
+
+[node name="NearBuildings2" type="Sprite" parent="Background/ParallaxBackground"]
+position = Vector2( 233.638, 170.437 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+
+[node name="Enimies" type="Node2D" parent="."]
+
+[node name="LevelGoal" type="Area2D" parent="."]
+position = Vector2( 318.473, 238.729 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="AreaCollider" type="CollisionShape2D" parent="LevelGoal"]
+shape = SubResource( 1 )
+
+[node name="GoalSprite" type="Sprite" parent="LevelGoal"]
+modulate = Color( 1, 1, 1, 0.733333 )
+position = Vector2( 0.003, 0 )
+scale = Vector2( 0.00521306, 0.03 )
+texture = ExtResource( 4 )
+
+[node name="anim" type="AnimationPlayer" parent="LevelGoal"]
+pause_mode = 2
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
+anims/collected = SubResource( 3 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 277.973, 235.514 )
+
+[node name="PlayerSprite" type="Sprite" parent="SpawnPoint"]
+modulate = Color( 1, 1, 1, 0.870588 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 9
+[connection signal="level_finished" from="." to="." method="level_finished"]
+[connection signal="body_entered" from="LevelGoal" to="." method="level_finished"]

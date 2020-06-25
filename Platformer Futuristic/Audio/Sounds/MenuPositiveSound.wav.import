@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MenuPositiveSound.wav-7c1776cff14ce0efb6cda49d11a8de4c.sample"
+
+[deps]
+
+source_file="res://Audio/Sounds/MenuPositiveSound.wav"
+dest_files=[ "res://.import/MenuPositiveSound.wav-7c1776cff14ce0efb6cda49d11a8de4c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
